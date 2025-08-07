@@ -1,0 +1,32 @@
+
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Mon Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+    <div class="container mx-auto p-6">
+        <h1 class="text-4xl font-bold text-center mb-8">Mon Portfolio</h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {% for projet in projets %}
+            <div class="bg-white rounded-lg shadow p-4">
+                <img src="{{ projet.image.url }}" alt="{{ projet.titre }}" class="w-full h-48 object-cover rounded">
+                <h2 class="text-xl font-semibold mt-4">{{ projet.titre }}</h2>
+                <p class="text-gray-600">{{ projet.description }}</p>
+                {% if projet.lien %}
+                <a href="{{ projet.lien }}" class="text-blue-600 hover:underline block mt-2">Voir le projet</a>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</body>
+</html>

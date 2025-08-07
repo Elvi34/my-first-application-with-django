@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fournitures Scolaires - ElviraEduShop</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Pour la transition sur les cartes */
+    .product-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+  <!-- Header -->
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto flex items-center justify-between py-4 px-6">
+      <a href="#" class="flex items-center text-blue-600 font-extrabold text-xl">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-2 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6l4 2" />
+        </svg>
+        ElviraEduShop
+      </a>
+      <nav>
+        <ul class="flex space-x-6 text-lg font-semibold">
+          <li><a href="#" class="hover:text-blue-600 transition">Accueil</a></li>
+          <li><a href="#" class="hover:text-blue-600 transition">Produits</a></li>
+          <li><a href="#" class="hover:text-blue-600 transition">Panier</a></li>
+          <li><a href="#" class="hover:text-blue-600 transition">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <main class="container mx-auto px-6 py-10">
+    <section class="mb-12 text-center">
+      <h1 class="text-4xl font-bold mb-3">Nos Fournitures Scolaires</h1>
+      <p class="text-gray-600 text-lg max-w-xl mx-auto">Tout le matériel nécessaire pour une rentrée réussie</p>
+    </section>
+
+    <!-- Barre de recherche -->
+    <section class="mb-10 flex justify-center">
+      <form method="get" class="flex w-full max-w-md shadow-lg rounded overflow-hidden">
+        <input type="text" name="search" placeholder="Rechercher un produit..." 
+          class="flex-grow px-4 py-2 border border-r-0 border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-l-md" />
+        <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-r-md hover:bg-blue-700 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </button>
+      </form>
+    </section>
+
+    <!-- Liste des produits -->
+    <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+      {% for produit in produits %}
+      <article class="bg-white rounded-lg shadow-md overflow-hidden product-card flex flex-col">
+        <div class="h-48 bg-gray-100 flex items-center justify-center">
+          {% if produit.image %}
+          <img src="{{ produit.image.url }}" alt="{{ produit.nom }}" class="max-h-full max-w-full object-contain p-4" />
+          {% else %}
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7h18M3 12h18M3 17h18" />
+          </svg>
+          {% endif %}
+        </div>
+        <div class="p-4 flex flex-col flex-grow">
+          <h2 class="font-semibold text-lg mb-2">{{ produit.nom }}</h2>
+          <p class="text-gray-600 text-sm flex-grow">{{ produit.description|truncatechars:100 }}</p>
+          <div class="mt-4 flex justify-between items-center">
+            <span class="text-blue-600 font-bold text-xl">{{ produit.prix }} €</span>
+            <button title="Ajouter au panier" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.293 2.293a1 1 0 000 1.414L8 19h8m-5-6v6" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-300 py-10 mt-16">
+    <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <h3 class="text-white text-xl font-semibold mb-4">ElviraEduShop</h3>
+        <p class="text-gray-400 max-w-sm">Votre fournisseur de matériel scolaire de confiance. Qualité et service au rendez-vous pour accompagner la réussite de vos enfants.</p>
+      </div>
+      <div>
+        <h3 class="text-white text-xl font-semibold mb-4">Contactez-nous</h3>
+        <ul class="space-y-3">
+          <li class="flex items-center space-x-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 12.414M13.414 12.414l-4.243-4.243M13.414 12.414l7.071 7.071a8 8 0 11-11.314-11.314l7.071 7.071z" />
+            </svg>
+            <span>123 Rue de l'Éducation, Yaoundé, Cameroun</span>
+          </li>
+          <li class="flex items-center space-x-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-18 0v8a2 2 0 002 2h14a2 2 0 002-2v-8m-18 0l7.89 5.26" />
+            </svg>
+            <span>contact@elviraedushop.cm</span>
+          </li>
+          <li class="flex items-center space-x-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h1l3 4h9l3-4h1" />
+            </svg>
+            <span>+237 699 00 00 00</span>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-white text-xl font-semibold mb-4">Liens rapides</h3>
+        <ul class="space-y-2">
+          <li><a href="#" class="hover:text-blue-600 transition">Accueil</a></li>
+          <li><a href="#" class="hover:text-blue-600 transition">Produits</a></li>
+          <li><a href="#" class="hover:text-blue-600 transition">Panier</a></li>
+          <li><a href="#" class="hover:text-blue-600 transition">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="text-center text-gray-500 mt-10 text-sm">
+      &copy; 2025 ElviraEduShop. Tous droits réservés.
+    </div>
+  </footer>
+
+</body>
+</html>

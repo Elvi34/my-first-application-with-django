@@ -1,0 +1,89 @@
+<!-- templates/index.html -->
+ {% load static %}
+ 
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Accueil | Fournitures Scolaires</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="{%static 'output.css'%}">
+</head>
+<body class="bg-gray-100 text-gray-800">
+    
+
+  <!-- Header -->
+  <header class="bg-white shadow">
+    <div class="container mx-auto px-4 py-6 flex justify-between items-center">
+      <h1 class="text-xl font-bold text-blue-600">FOURNITURES SCOLAIRES </h1>
+      <nav>
+        <a href="#" class="text-sm text-gray-600 hover:text-blue-600 mx-2">Accueil</a>
+        <a href="{% url 'produit' %}" class="text-sm text-gray-600 hover:text-blue-600 mx-2">Produits</a>
+        <a href="{% url 'login' %}" class="text-sm text-gray-600 hover:text-blue-600 mx-2">Connexion</a>
+        <a href="{% url 'inscription' %}" class="text-sm text-white bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded ml-2">Inscription</a>
+        <a href="{% url 'portfolio' %}" class="hover:underline">Portfolio</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="bg-blue-100 py-20">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-4xl font-bold mb-4">Bienvenue chez ElviraEduShop</h2>
+      <p class="text-lg mb-6"> Votre boutique de confiance pour toutes vos fournitures scolaires, tout le nécessaire pour une meilleure rentrée en un seul endroit.
+          Des fournitures de qualite au meilleur prix. Faites vos achats en toute confiance. 
+      </p> 
+      <a href="{% url 'list'%}" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold">Voir les produits</a>
+    </div>
+  </section>
+
+  <!-- Produits en vedette -->
+  <section class="py-16">
+    <div class="container mx-auto px-4">
+      <h3 class="text-2xl font-semibold mb-8 text-center">Produits populaires</h3>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white p-6 rounded-lg shadow">
+         <img src="{% static 'images/cartable.png' %}" class="w-full h-48 object-cover mb-4 rounded" alt="Produit 1">
+
+          <h4 class="text-lg font-bold mb-2">Cartable Élève</h4>
+          <p class="text-sm text-gray-600 mb-2">Solide, confortable, et tendance.</p>
+          <span class="text-blue-600 font-semibold">2500 XAF</span>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow">
+          <img src="{% static 'images/Image collée (2).png' %}" class="w-full h-48 object-cover mb-4 rounded" alt="Produit 2">
+          <h4 class="text-lg font-bold mb-2">Trousse Stylée</h4>
+          <p class="text-sm text-gray-600 mb-2">Compacte avec plusieurs compartiments.</p>
+          <span class="text-blue-600 font-semibold">1500 XAF</span>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow">
+          <img src="{% static 'images/Image collée (3).png' %}" class="w-full h-48 object-cover mb-4 rounded" alt="Produit 3">
+          <h4 class="text-lg font-bold mb-2">Pack Cahiers</h4>
+          <p class="text-sm text-gray-600 mb-2">10 cahiers A4 avec couvertures rigides.</p>
+          <span class="text-blue-600 font-semibold">3000 XAF</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t py-6 text-center text-sm text-gray-500">
+    
+
+    <h3>Contacts</h3>
+    
+    <ul>
+
+       <li> <p>Telephone : +237 6 73 56 04 54</p> </li>
+       <li> <p>Email: ElviraEduShop@gmail.com </p></li>
+       <li><p>Adresse : Douala-Beedi, Cameroun </p></li> 
+       <li>  <p>© {{ now|date:"Y" }} Fournitures Scolaires. Tous droits réservés.</p></li>
+
+      
+      
+    </ul>
+
+  </footer>
+
+</body>
+</html>
