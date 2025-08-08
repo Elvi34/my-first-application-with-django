@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [ '*' ]
 
@@ -52,6 +52,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -173,3 +174,24 @@ LOGIN_URL = 'login'  # Nom de l'URL de connexion (utilisé par @login_required)
 #LOGIN_REDIRECT_URL = 'l'   Redirection après connexion réussie
 
 LOGIN_REDIRECT_URL = 'liste_produits'
+
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+
+STORAGES = {
+    "default":{
+        "BACKEND": "django.core.files.storage.FileSystemStorage"
+    },
+   
+   
+   
+   
+   
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
+
+LOGIN_REDIRECT_URL = 'liste_produits'  # nom de la route vers la page produits
+LOGIN_URL = 'login'  # route pour la page de connexion

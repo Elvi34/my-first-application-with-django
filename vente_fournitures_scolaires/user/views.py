@@ -51,7 +51,12 @@ def inscription(request):
         form = UserCreationForm()
     return render(request, 'inscription.html', {'form': form})
 
-from django.shortcuts import redirect
+
+
+
+
+
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 
 def connexion_view(request):
@@ -59,7 +64,10 @@ def connexion_view(request):
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
-        if user:
+        if user is not None:
             login(request, user)
             return redirect('liste_produits')
-    return render(request, 'users/login.html')
+        else:
+            error = "Nom d'utilisateur ou mot de passe incorrect."
+            return render(request, 'user/login.html', {'error': error})
+    return render(request, 'user/login.html')

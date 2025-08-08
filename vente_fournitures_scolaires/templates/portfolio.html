@@ -1,32 +1,108 @@
 
 
+
 {% load static %}
 
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-100 font-sans leading-relaxed tracking-wide">
 
-    <div class="container mx-auto p-6">
-        <h1 class="text-4xl font-bold text-center mb-8">Mon Portfolio</h1>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {% for projet in projets %}
-            <div class="bg-white rounded-lg shadow p-4">
-                <img src="{{ projet.image.url }}" alt="{{ projet.titre }}" class="w-full h-48 object-cover rounded">
-                <h2 class="text-xl font-semibold mt-4">{{ projet.titre }}</h2>
-                <p class="text-gray-600">{{ projet.description }}</p>
-                {% if projet.lien %}
-                <a href="{{ projet.lien }}" class="text-blue-600 hover:underline block mt-2">Voir le projet</a>
-                {% endif %}
-            </div>
-            {% endfor %}
+    <!-- HEADER -->
+    <header class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-8 shadow-lg">
+        <div class="container mx-auto flex flex-col items-center">
+            <img src="{% static 'images/photo.jpg' %}" alt="Photo de profil" 
+                 class="w-32 h-32 object-cover rounded-full border-4 border-white shadow-lg hover:scale-105 transition-transform duration-300">
+            <h1 class="mt-4 text-3xl font-bold">NKenfack Elvira</h1>
+            <p class="text-lg mt-1">Développeuse Web & Applications</p>
         </div>
-    </div>
+    </header>
+
+    <!-- SECTION A PROPOS -->
+    <section class="container mx-auto my-10 px-4">
+        <h2 class="text-2xl font-bold border-b-4 border-indigo-500 pb-2 mb-6">À propos de moi</h2>
+        <p class="text-gray-700 leading-relaxed">
+            Passionnée par le développement web et les nouvelles technologies, j’aime concevoir 
+            des interfaces modernes et intuitives. Je suis motivée, persévérante et toujours prête à relever 
+            de nouveaux défis, a apprendre de nouvelles choses .
+        </p>
+    </section>
+
+    <!-- PARCOURS SCOLAIRE -->
+    <section class="container mx-auto my-10 px-4">
+        <h2 class="text-2xl font-bold border-b-4 border-indigo-500 pb-2 mb-6">Parcours scolaire</h2>
+        <ul class="space-y-4">
+            <li class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition">
+                <span class="font-semibold">CEP</span> — École Publique de Ngodi Groupe2
+            </li>
+            <li class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition">
+                <span class="font-semibold">BEPC</span> — Lycée Moderne de Nkozoa en 2020
+            </li>
+            <li class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition">
+                <span class="font-semibold">Probatoire</span> — Lycée Moderne de Nkozoa en 2022
+            </li>
+            <li class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition">
+                <span class="font-semibold">Baccalauréat</span> — Lycée Moderne de Nkozoa  en 2023
+            </li>
+        </ul>
+    </section>
+
+    <!-- DIPLOMES & EXPERIENCES -->
+    <section class="container mx-auto my-10 px-4">
+        <h2 class="text-2xl font-bold border-b-4 border-indigo-500 pb-2 mb-6">Diplômes & Expériences académiques</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
+                <h3 class="font-semibold text-lg">BTS en Reseau et Securite Informatique</h3>
+                <p class="text-gray-600"> Institut Universitaire de la Cote (2023 - 2025)</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
+                <h3 class="font-semibold text-lg">Stage en développement Web</h3>
+                <p class="text-gray-600">Entreprise HOOYIA (2022)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPETENCES -->
+    <section class="container mx-auto my-10 px-4">
+        <h2 class="text-2xl font-bold border-b-4 border-indigo-500 pb-2 mb-6">Compétences</h2>
+        <div class="flex flex-wrap gap-3">
+            <span class="bg-indigo-500 text-white px-3 py-1 rounded-full">Maitrise de word</span>
+            <span class="bg-indigo-500 text-white px-3 py-1 rounded-full">CSS </span>
+            <span class="bg-indigo-500 text-white px-3 py-1 rounded-full">Cablage reseau</span>
+            <span class="bg-indigo-500 text-white px-3 py-1 rounded-full">HTML</span>
+        </div>
+    </section>
+
+    <!-- FORMULAIRE DE CONTACT -->
+    <section class="container mx-auto my-10 px-4">
+        <h2 class="text-2xl font-bold border-b-4 border-indigo-500 pb-2 mb-6">Me contacter</h2>
+        <form method="post" class="bg-white p-6 rounded-lg shadow-lg space-y-4">
+            {% csrf_token %}
+            <div>
+                <label class="block font-semibold">Nom</label>
+                <input type="text" name="nom" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400">
+            </div>
+            <div>
+                <label class="block font-semibold">Email</label>
+                <input type="email" name="email" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400">
+            </div>
+            <div>
+                <label class="block font-semibold">Message</label>
+                <textarea name="message" rows="4" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400"></textarea>
+            </div>
+            <button type="submit" class="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600 transition">Envoyer</button>
+        </form>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-white text-center py-6 mt-10">
+        <p>© 2025 NKenfack Elvira - Tous droits réservés</p>
+    </footer>
 
 </body>
 </html>
