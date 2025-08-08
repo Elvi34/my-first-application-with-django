@@ -16,8 +16,6 @@ class signup(TemplateView):
 class liste_produits(TemplateView):
     template_name = "produits.html"
 
-class inscription(TemplateView):
-    template_name = "inscription,html" 
 
 
 def liste_produits(request):
